@@ -8,8 +8,10 @@
 이러한 상황과 유사하게 POST 방식은 데이터를 서버로 제출하여 추가 또는 수정하기 위해서 사용하는 방식
 (포스트잇 주고받으며 비밀연애)
 
-# 문제 풀이 
-1) 템플릿을 랜더링 하는 response를 만든다 -> res.render
+# 2주차 퀴즈 풀이 
+1) 템플릿을 랜더링 하는 response를 만든다 
+-> res.render
+
 2) app.js에서의 nunjucks 설정
 
     setViewEngine (){
@@ -20,10 +22,33 @@
         });
 
     }
-5) express에서 페이지 없음 not found 응답하려고 한다!  => res.status(404)
+3) nunjucks 에서 컨트롤러에서 뿌려진 변수에 html 태그 포함
+
+4)
+
+5) body parser
+6) bodyparser로 1200원 가격 값 받는 변수는?
+7) app.js 에서 GET /uploads로 접속시 uploads 폴더를 정적폴더로 셋팅
+
+setStatic() {
+    this.app.use("/uploads", express.static("uploads"));
+  }
+  
+8) express 에서 템플릿에서만 사용할 글로벌 변수를 셋팅
 
 
-40) sequelize Product 모델 생성 
+
+9) express에서 페이지 없음 not found 응답하려고 한다!  => res.status(404)
+
+10) .dotenv
+
+11) mysql root 유저 패스워드 접속 명령어 
+-> mysql -u root -p
+
+12) 데이터 베이스 facameats 생성 명령어
+-> create database facameats;
+
+13) sequelize Product 모델 생성 
 module.exports = (sequelize, DataTypes)=>{
     const Products = sequelize.##define##('Products',
         {
@@ -43,4 +68,72 @@ module.exports = (sequelize, DataTypes)=>{
     return Products;
 }
 
-10) sequelize에서 여러 줄을 조회하는 명령어 => findAll() : 조회
+14) sequelize에서 여러 줄을 조회하는 명령어 -> 모델명.findAll()
+
+15) sequelize 테이블에 1row를 입력
+
+16) nunjucks를 템플릿으로 설정하고 write.html을 보여주기
+-> res.render ('admin/write.html');
+
+(1)
+exports.get_products_write = ( _ , res) => {
+    res.render( 'admin/write.html');
+}
+
+17) Promise 생성 방법
+-> const p1 = new Promise( (resolve,reject)=>{} )
+1. 인자를 resolve, reject
+2. 원하는 시점을 resolve로 받아온다
+
+const aa = new Promise(( resolve, reject)=>{
+    resolve(console.log('프라미스 이행 !!!'));
+});
+
+
+18) Promise all 문법
+->
+(1)
+const p1 = new Promise((resolve, reject)=>{
+    setTimeout( ()=>{
+         resolve({p1_text : "p1의 텍스트"});
+    },5000);
+});
+
+const p2 = new Promise((resolve,reject)=>{
+    setTimeout( ()=>{
+        resolve({p2_text :"p2의 텍스트"});
+    },3000);
+});
+
+//Promise.all( [] )
+Promise.all( [p1,p2]).then((result)=>{
+    console.log("p1 = " +result[0].p1_text);
+    console.log("p2 = "+ result[1].p2.text);
+});
+
+
+19) async 
+
+
+20)sequelize update 에 대해 select의 where 조건 
+-> {where : {id : req.params.id }}
+
+(1) : where절도 {중갈호}로 감싸진다
+exports.post_products_edit = (req,res)=>{
+    models.Products.update(
+    {
+        name : req.body.name,
+        price : req.body.price,
+        description : req.body.description
+    },
+     {
+        //where 절
+        where : {id : req.params.id} 
+        //req.params.id ->> admin.index.js에서의 id 
+    }
+     ).then( ()=>{
+        res.redirect('/admin/products/detail/'+req.params.id);
+    });
+}
+
+
