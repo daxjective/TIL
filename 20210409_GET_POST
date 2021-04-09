@@ -1,0 +1,46 @@
+#GET : 
+'가져오다'
+우리가 필요한 정보를 얻기 위해 도서관에서 책을 빌려 가져오는(GET)상황과 유사하게 GET은 정보를 가져와서 '조회'하기 위해 사용되는 방식
+
+#POST :
+'부치다, 제출하다'
+서류를 제출하는 것은 우리에 대한 정보를 제출하여(POST) 추가하기 위함
+이러한 상황과 유사하게 POST 방식은 데이터를 서버로 제출하여 추가 또는 수정하기 위해서 사용하는 방식
+(포스트잇 주고받으며 비밀연애)
+
+# 문제 풀이 
+1) 템플릿을 랜더링 하는 response를 만든다 -> res.render
+2) app.js에서의 nunjucks 설정
+
+    setViewEngine (){
+
+        nunjucks.configure('template', {
+            autoescape: true,
+            express: this.app
+        });
+
+    }
+5) express에서 페이지 없음 not found 응답하려고 한다!  => res.status(404)
+
+
+40) sequelize Product 모델 생성 
+module.exports = (sequelize, DataTypes)=>{
+    const Products = sequelize.##define##('Products',
+        {
+            id: { type: DataTypes.INTEGER, primaryKey: true , autoIncrement: true },
+            name : { type: DataTypes.STRING },
+            price : { type: DataTypes.INTEGER },
+            description : { type: DataTypes.TEXT }
+        },
+        {charset: "utf8"} //검색해서 알아냄 ㅠ 강사님이나 다른사람들은 어케한거지 ㅠ
+    );
+    //함수호출하는 prototype //dateFormat이라는 함수 
+    //return 키워드와 중갈호{} 삭제 가능 !
+    Products.prototype.dateFormat = (date) =>
+        moment(date).format('YYYY년 MM월 DD일');  
+        //moment(date).format('YYYY-MM-DD')
+   
+    return Products;
+}
+
+10) sequelize에서 여러 줄을 조회하는 명령어 => findAll() : 조회
