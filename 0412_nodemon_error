@@ -1,0 +1,41 @@
+# nodemon error로 아주 골머리를 썩었다.
+다운 받은 템플릿을 nodemon 명령어를 작성하니 
+
+'nodemon'은(는) 내부 또는 외부 명령, 실행할 수 있는 프로그램, 또는
+배치 파일이 아닙니다.
+
+https://stackoverflow.com/questions/42308879/how-to-solve-npm-error-npm-err-code-elifecycle
+링크와 같은 방법 모두 다 해봤지만..
+해결 되는 바는 없었다.
+
+여러 방법으로 nodemon을 설치하다가
+아래와 같이 명령어를 작성하니 nodemon이 돌아가기 시작했다 ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ
+
+C:\Users\daxje\Desktop\suc>npm install nodemon --save-dev
+
+> nodemon@2.0.7 postinstall C:\Users\daxje\Desktop\suc\node_modules\nodemon
+> node bin/postinstall || exit 0
+
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@~2.3.1 (node_modules\chokidar\node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.3.2: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+npm WARN facameats@1.0.0 No description
+npm WARN facameats@1.0.0 No repository field.
+
++ nodemon@2.0.7
+added 116 packages from 53 contributors and audited 213 packages in 9.889s
+found 0 vulnerabilities
+
+
+C:\Users\daxje\Desktop\suc>npm run dev
+
+> facameats@1.0.0 dev C:\Users\daxje\Desktop\suc
+> nodemon -e js,html server.js
+
+[nodemon] 2.0.7
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,html
+[nodemon] starting `node server.js`
+Express listening on port 3000
+Executing (default): SELECT 1+1 AS result
+Connection has been established successfully.
