@@ -1,0 +1,17 @@
+# 테이블 만들면 계속 한글만 깨졌음
+{charset: "utf8"}으로 해결함 
+
+
+// sequelize Product 모델 생성 
+module.exports = (sequelize, DataTypes)=>{
+    const Products = sequelize.define('Products',
+        {
+            id: { type: DataTypes.INTEGER, primaryKey: true , autoIncrement: true },
+            name : { type: DataTypes.STRING },
+            price : { type: DataTypes.INTEGER },
+            description : { type: DataTypes.TEXT }
+        },
+        {charset: "utf8"}
+    );
+    return Products;
+}
